@@ -1,0 +1,32 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 2%;
+    width: 50%;
+  }
+
+  .main-container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+h1 {
+    padding-left: 2%
+  }
+
+  table {
+    width: 100%;
+    margin-left: 2%;
+  }
+  .canvas{
+    width: 300px;
+    height: 150px;
+    border: 1px solid #000000;
+    margin-left: 30px;
+    margin-bottom: 2%;
+    /* background-color: bisque */
+}
+
+button{
+  height: 40px;
+}
