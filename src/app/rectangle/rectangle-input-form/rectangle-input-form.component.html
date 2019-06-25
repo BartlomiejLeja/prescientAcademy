@@ -1,0 +1,24 @@
+<h1>Insert shape of rectangle </h1>
+<div class="main-container" >
+  <div class="example-container">
+    <mat-form-field>
+          <input [(ngModel)]="rectangle.left" matInput placeholder="Insert left" type="number"  >
+      </mat-form-field>
+
+    <mat-form-field>
+          <input [(ngModel)]="rectangle.right" matInput placeholder="Insert right" type="number"  >
+      </mat-form-field>
+
+    <mat-form-field>
+        <input [(ngModel)]="rectangle.top" matInput placeholder="Insert top" type="number"  >
+    </mat-form-field>
+
+    <mat-form-field>
+      <input [(ngModel)]="rectangle.bottom" matInput placeholder="Insert  bottom" type="number"  >
+  </mat-form-field>
+  </div>
+  <canvas id="stage" #stage class="canvas"></canvas>
+
+</div>
+
+<button mat-raised-button color="accent" (click)="drawRectangle(rectangle.left,rectangle.right,rectangle.top,rectangle.bottom)">Draw circle</button>

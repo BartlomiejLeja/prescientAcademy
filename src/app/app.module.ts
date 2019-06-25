@@ -21,6 +21,7 @@ import {
 import { CircleInputFormComponent } from './circle-input-form/circle-input-form.component';
 import { OtherStuffComponent } from './rectangle-input-form/rectangle-input-form.component';
 import { CircleInsideRectangleCanvaComponent } from './circle-inside-rectangle-canva/circle-inside-rectangle-canva.component';
+import { RectangleModule } from './rectangle/rectangle.module';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { CircleInsideRectangleCanvaComponent } from './circle-inside-rectangle-c
     HttpClientModule,
     FormsModule,
     MatGridListModule,
-    MatTableModule
+    MatTableModule,
+    RectangleModule
   ],
   entryComponents: [AppComponent],
   providers: [],
