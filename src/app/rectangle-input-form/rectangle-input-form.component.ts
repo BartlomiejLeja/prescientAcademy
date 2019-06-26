@@ -8,26 +8,17 @@ import {Rectangle} from '../models/rectangle';
   styleUrls: ['./rectangle-input-form.component.css']
 })
 export class OtherStuffComponent implements OnInit {
-  dataSource: any;
   public canvas: any;
   public rectangle: Rectangle;
   public rectangles: Rectangle[];
 
-  constructor( public rectangleInputFormService: RectangleInputFormService) { }
+  constructor( public rectangleInputFormService: RectangleInputFormService ) { }
   displayedColumns: string[] = ['left', 'right', 'top', 'bottom'];
- 
+
   ngOnInit() {
     this.rectangles = [];
-    this.dataSource = [];
     this.canvas = document.getElementById('stage');
     this.rectangle = new  Rectangle();
-    this.rectangleInputFormService.getAllRectangles().subscribe((respone) => {
-      respone.forEach( rectangle => {
-        this.rectangles.push(rectangle);
-      });
-      this.dataSource = this.rectangles;
-      console.log(this.rectangles);
-    });
   }
 
   public drawRectangle(left: number, right: number, top: number, bottom: number) {
@@ -55,7 +46,7 @@ export class OtherStuffComponent implements OnInit {
   public setRectangleShape(shapes: any) {
     this.rectangleInputFormService.setRectangleShapes(shapes).subscribe((respone) => {
       console.log(respone);
-      this.dataSource ={};
+      //this.dataSource ={};
       this.getAllRectangles();
     });
   }
@@ -67,7 +58,7 @@ export class OtherStuffComponent implements OnInit {
         this.rectangles.push(rectangle);
       });
       console.log(this.rectangles);
-      this.dataSource = this.rectangles;
+      //this.dataSource = this.rectangles;
     });
   }
 
