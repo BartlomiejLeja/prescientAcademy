@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Rectangle } from 'src/app/models/rectangle';
-import { RectangleInputFormService } from 'src/app/rectangle-input-form/rectangle-input-form.service';
+import { Rectangle } from 'src/app/models/rectangle';;
+import { DrawingService } from '../services/drawing.service';
+import { RectangleService } from '../services/rectangle.service';
 
 @Component({
   selector: 'app-rectangle-input-form',
@@ -13,15 +14,17 @@ export class RectangleInputFormComponent implements OnInit {
   public rectangle: Rectangle;
   public rectangles: Rectangle[];
 
-  constructor( public rectangleInputFormService: RectangleInputFormService) { }
+  constructor( public rectangleService: RectangleService, public drawingService: DrawingService) {
+   }
   displayedColumns: string[] = ['left', 'right', 'top', 'bottom'];
 
   ngOnInit() {
     this.rectangles = [];
     this.dataSource = [];
-    this.canvas = document.getElementById('stage');
+    // this.canvas = document.getElementById('stage');
+    this.drawingService.canvas = document.getElementById('stage');
     this.rectangle = new  Rectangle();
-    this.rectangleInputFormService.getAllRectangles().subscribe((respone) => {
+    this.rectangleService.getAllRectangles().subscribe((respone) => {
       respone.forEach( rectangle => {
         this.rectangles.push(rectangle);
       });
@@ -31,8 +34,8 @@ export class RectangleInputFormComponent implements OnInit {
   }
 
   public drawRectangle(left: number, right: number, top: number, bottom: number) {
-    if (this.canvas.getContext) {
-      let ctx = this.canvas.getContext('2d');
+    if (this.drawingService.canvas.getContext) {
+      let ctx = this.drawingService.canvas.getContext('2d');
 
       ctx.beginPath();
       ctx.rect(left, right, top, bottom);
@@ -41,19 +44,9 @@ export class RectangleInputFormComponent implements OnInit {
     this.setRectangleShape(this.rectangle);
   }
 
-  public drawRectangleOnClearCanvas(left: number, right: number, top: number, bottom: number) {
-
-    if (this.canvas.getContext) {
-      let ctx = this.canvas.getContext('2d');
-      ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      ctx.beginPath();
-      ctx.rect(left, bottom, top, right);
-      ctx.stroke();
-    }
-  }
-
+ 
   public setRectangleShape(shapes: any) {
-    this.rectangleInputFormService.setRectangleShapes(shapes).subscribe((respone) => {
+    this.rectangleService.setRectangleShapes(shapes).subscribe((respone) => {
       console.log(respone);
       this.dataSource ={};
       this.getAllRectangles();
@@ -62,17 +55,12 @@ export class RectangleInputFormComponent implements OnInit {
 
   private getAllRectangles() {
     this.rectangles = [];
-    this.rectangleInputFormService.getAllRectangles().subscribe((respone) =>{
-      respone.forEach(rectangle => {
+    this.rectangleService.getAllRectangles().subscribe((respone) =>{
+      respone.forEach( rectangle => {
         this.rectangles.push(rectangle);
       });
       console.log(this.rectangles);
       this.dataSource = this.rectangles;
     });
-  }
-
-  public getRecord(row){
-    console.log(row);
-    this.drawRectangleOnClearCanvas(row.left, row.bottom, row.top, row.right);
   }
 }
