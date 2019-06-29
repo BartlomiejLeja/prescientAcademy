@@ -21,7 +21,7 @@ export class RectangleTabelComponent implements OnInit {
       respone.forEach( rectangle => {
         this.rectangles.push(rectangle);
       });
-      this.dataSource = this.rectangles;
+      this.drawingService.dataSource = this.rectangles;
       console.log(this.rectangles);
     });
   }

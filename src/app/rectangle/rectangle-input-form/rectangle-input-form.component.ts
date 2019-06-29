@@ -44,7 +44,6 @@ export class RectangleInputFormComponent implements OnInit {
     this.setRectangleShape(this.rectangle);
   }
 
- 
   public setRectangleShape(shapes: any) {
     this.rectangleService.setRectangleShapes(shapes).subscribe((respone) => {
       console.log(respone);
