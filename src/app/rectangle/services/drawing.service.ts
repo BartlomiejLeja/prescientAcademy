@@ -33,7 +33,7 @@ export class DrawingService {
           let ctx = this.canvas.getContext('2d');
           ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
           ctx.beginPath();
-          ctx.rect(left, bottom, top, right);
+          ctx.rect(left, right, top, bottom);
           ctx.stroke();
         }
       }
